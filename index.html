@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Séance — Resurrect the Dead Web</title>
+<meta name="description" content="Séance summons dead websites back from the digital afterlife using the Internet Archive's Wayback Machine. Enter a dead URL, see its autopsy, walk its timeline, and view it alive again.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="candles" aria-hidden="true">🕯️ 🕯️ 🕯️</div>
+  <h1>SÉANCE</h1>
+  <p class="tagline">Resurrect the dead web. Speak to websites that no longer answer.</p>
+  <p class="sub">Every dead link leaves a ghost in the Internet Archive. This table summons it.</p>
+</header>
+
+<main>
+  <!-- ============ SUMMON ============ -->
+  <section class="panel summon-panel" id="summon">
+    <h2>🪦 Summon a Dead Website</h2>
+    <p class="hint">Paste any URL — a dead blog, a shuttered startup, a GeoCities shrine. Séance checks whether it still answers, and if not, raises its archived ghost.</p>
+    <form id="summon-form">
+      <input id="url-input" type="text" inputmode="url" autocomplete="off" spellcheck="false"
+             placeholder="e.g. geocities.com  or  vine.co  or  your old blog…" aria-label="Website URL">
+      <button type="submit" id="summon-btn">Summon 👻</button>
+    </form>
+    <div class="quick-summon">
+      <span>Try a famous ghost:</span>
+      <button data-url="geocities.com">GeoCities</button>
+      <button data-url="vine.co">Vine</button>
+      <button data-url="plus.google.com">Google+</button>
+      <button data-url="reader.google.com">Google Reader</button>
+      <button data-url="orkut.com">Orkut</button>
+    </div>
+    <p id="summon-status" class="status" role="status"></p>
+  </section>
+
+  <!-- ============ AUTOPSY / VERDICT ============ -->
+  <section class="panel hidden" id="verdict-panel" aria-live="polite">
+    <h2>⚰️ The Autopsy Report</h2>
+    <div id="verdict"></div>
+    <div id="timeline-wrap" class="hidden">
+      <h3>📜 Timeline of the Afterlife</h3>
+      <p class="hint">One snapshot per year, pulled from the Wayback Machine. Pick a year to see the site as it was.</p>
+      <div id="timeline" class="timeline"></div>
+    </div>
+    <div id="viewer-wrap" class="hidden">
+      <h3>🔮 The Apparition</h3>
+      <div class="viewer-bar">
+        <span id="viewer-label"></span>
+        <a id="viewer-open" href="#" target="_blank" rel="noopener">Open full séance ↗</a>
+      </div>
+      <iframe id="viewer" title="Archived website viewer" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    </div>
+    <div id="obituary-wrap" class="hidden">
+      <h3>🕯️ Obituary</h3>
+      <pre id="obituary"></pre>
+      <button id="copy-obit">Copy obituary</button>
+      <span id="copy-note" class="status"></span>
+    </div>
+  </section>
+
+  <!-- ============ GRAVEYARD ============ -->
+  <section class="panel" id="graveyard">
+    <h2>🪦 The Graveyard of the Web</h2>
+    <p class="hint">Twelve famous souls, laid to rest. Click any headstone to summon it.</p>
+    <div id="graveyard-grid" class="graveyard-grid"></div>
+  </section>
+
+  <!-- ============ SÉANCE LOG ============ -->
+  <section class="panel" id="log-panel">
+    <h2>📖 Séance Log</h2>
+    <p class="hint">Spirits summoned from this browser, kept only on your device.</p>
+    <ul id="seance-log"></ul>
+    <button id="clear-log" class="ghost-btn">Clear the log</button>
+  </section>
+
+  <section class="panel about">
+    <h2>How the magic works</h2>
+    <ol>
+      <li><strong>Knock.</strong> Séance knocks on the live URL. If nothing answers, the site is declared dead.</li>
+      <li><strong>Consult the Archive.</strong> It asks the Internet Archive's Wayback Machine for the nearest surviving snapshot and one capture per year of the site's life.</li>
+      <li><strong>Raise the ghost.</strong> The snapshot is shown in the viewer, exactly as the site looked when it was alive.</li>
+    </ol>
+    <p class="fine">No accounts, no tracking, no servers of our own. All data comes from the public Internet Archive APIs (archive.org / web.archive.org). Snapshots belong to the Internet Archive and the original sites.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Built for <strong>Kiroween 2026</strong> — Resurrection category. Made with Kiro's spec-driven workflow. 🕯️</p>
+  <p class="fine">Séance is a tribute, not a resurrection service: it cannot restore a site, only let you visit its ghost.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

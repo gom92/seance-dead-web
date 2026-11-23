@@ -1,0 +1,173 @@
+/* Séance — gothic, candle-lit, zero-dependency styles */
+:root {
+  --bg: #0d0a14;
+  --bg2: #171226;
+  --panel: #1d1730;
+  --panel-border: #3a2d5c;
+  --ink: #ece5f8;
+  --muted: #a99cc9;
+  --accent: #b78cff;   /* spectral violet */
+  --accent2: #ff9d5c;  /* candle flame */
+  --green: #7ee2a8;    /* alive */
+  --red: #ff6b6b;      /* dead */
+  --gold: #e8c468;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(183, 140, 255, .16), transparent),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(255, 157, 92, .08), transparent),
+    var(--bg);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+.site-header {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+.candles { font-size: 1.6rem; letter-spacing: .6rem; filter: drop-shadow(0 0 12px rgba(255, 157, 92, .8)); }
+.site-header h1 {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  letter-spacing: .35em;
+  margin: .4rem 0 .2rem;
+  color: var(--accent);
+  text-shadow: 0 0 24px rgba(183, 140, 255, .55), 0 0 60px rgba(183, 140, 255, .25);
+}
+.tagline { font-style: italic; font-size: 1.25rem; color: var(--gold); margin: .2rem 0; }
+.sub { color: var(--muted); margin: .2rem 0 0; }
+
+main { max-width: 960px; margin: 0 auto; padding: 0 1rem 2rem; }
+
+.panel {
+  background: linear-gradient(180deg, var(--panel), var(--bg2));
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 1.4rem 1.5rem;
+  margin: 1.2rem 0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .45);
+}
+.panel h2 { margin-top: 0; color: var(--accent); letter-spacing: .02em; }
+.panel h3 { color: var(--gold); margin-bottom: .4rem; }
+.hint { color: var(--muted); font-size: .95rem; }
+.fine { color: var(--muted); font-size: .85rem; }
+.hidden { display: none !important; }
+
+/* Summon form */
+#summon-form { display: flex; gap: .6rem; flex-wrap: wrap; margin: 1rem 0 .6rem; }
+#url-input {
+  flex: 1 1 320px;
+  background: #0d0a14;
+  border: 1px solid var(--panel-border);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: .8rem 1rem;
+  font-size: 1.05rem;
+  font-family: inherit;
+}
+#url-input:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+button {
+  font-family: inherit;
+  background: var(--accent);
+  color: #14092b;
+  border: none;
+  border-radius: 10px;
+  padding: .8rem 1.4rem;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.12); }
+button:disabled { opacity: .55; cursor: wait; }
+.ghost-btn { background: transparent; color: var(--muted); border: 1px solid var(--panel-border); font-size: .9rem; padding: .5rem .9rem; }
+.quick-summon { display: flex; gap: .45rem; flex-wrap: wrap; align-items: center; }
+.quick-summon span { color: var(--muted); font-size: .9rem; }
+.quick-summon button {
+  background: transparent; color: var(--accent);
+  border: 1px solid var(--panel-border);
+  padding: .35rem .8rem; font-size: .9rem; font-weight: normal;
+}
+.status { color: var(--gold); font-style: italic; min-height: 1.4em; }
+
+/* Verdict */
+.verdict-card { border-left: 4px solid var(--red); background: rgba(255, 107, 107, .07); padding: 1rem 1.1rem; border-radius: 8px; }
+.verdict-card.alive { border-left-color: var(--green); background: rgba(126, 226, 168, .07); }
+.verdict-card h3 { margin: 0 0 .3rem; font-size: 1.4rem; }
+.verdict-card.alive h3 { color: var(--green); }
+.verdict-card.dead h3 { color: var(--red); }
+.verdict-card dl { display: grid; grid-template-columns: auto 1fr; gap: .15rem .9rem; margin: .6rem 0 0; }
+.verdict-card dt { color: var(--muted); }
+.verdict-card dd { margin: 0; }
+
+/* Timeline */
+.timeline { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0; }
+.timeline button {
+  background: #0d0a14; color: var(--ink);
+  border: 1px solid var(--panel-border);
+  padding: .45rem .8rem; font-size: .95rem; font-weight: normal;
+}
+.timeline button:hover { border-color: var(--accent); }
+.timeline button.active { background: var(--accent); color: #14092b; border-color: var(--accent); font-weight: bold; }
+
+/* Viewer */
+.viewer-bar { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: .9rem; margin-bottom: .5rem; }
+.viewer-bar a { color: var(--accent2); }
+#viewer { width: 100%; height: 520px; border: 1px solid var(--panel-border); border-radius: 10px; background: #fff; }
+
+/* Obituary */
+#obituary {
+  white-space: pre-wrap;
+  background: #0d0a14;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+}
+#copy-obit { margin-top: .5rem; }
+
+/* Graveyard */
+.graveyard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .8rem; }
+.tombstone {
+  background: #241b3d;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px 12px 6px 6px;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink);
+  font-weight: normal;
+  transition: transform .12s ease, border-color .12s ease;
+}
+.tombstone:hover { transform: translateY(-3px); border-color: var(--accent); }
+.tombstone .rip { color: var(--muted); font-size: .8rem; letter-spacing: .2em; }
+.tombstone .name { font-size: 1.15rem; font-weight: bold; color: var(--accent); display: block; margin: .15rem 0; }
+.tombstone .dates { color: var(--gold); font-size: .9rem; }
+.tombstone .cause { color: var(--muted); font-size: .88rem; margin: .35rem 0 0; }
+
+/* Log */
+#seance-log { list-style: none; padding: 0; margin: .5rem 0; }
+#seance-log li {
+  padding: .45rem .2rem;
+  border-bottom: 1px dashed var(--panel-border);
+  font-size: .95rem;
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+#seance-log .dead-tag { color: var(--red); }
+#seance-log .alive-tag { color: var(--green); }
+#seance-log button { background: none; color: var(--accent); padding: 0; font-size: .95rem; font-weight: normal; }
+
+.about ol { padding-left: 1.3rem; }
+.about li { margin: .35rem 0; }
+
+footer { text-align: center; color: var(--muted); padding: 0 1rem 2.5rem; font-size: .9rem; }
+
+@media (max-width: 600px) {
+  #viewer { height: 380px; }
+  .panel { padding: 1.1rem; }
+}
